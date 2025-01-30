@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordly</title>
+</head>
+<body>
+    <h1>Welcome to Wordly!</h1>
+    <h2>Guess the word and level up to the next!</h2>
+    <form id="myForm">
+        <input type="text" name="user_input" id="user_input" placeholder="Enter something">
+        <button type="submit">Submit</button>
+    </form>
+    <p id="response"></p>
+    <script>
+        document.querySelector('#myForm').addEventListener('submit', function(event) {
+            event.preventDefault()
+
+            let formData = new FormData(this)
+
+            fetch('/process', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('#response'). innerText = 'Response: ' + data.message
+            })
+            .catch(error => console.log('Error: ', error))
+        })
+    </script>
+    
+</body>
+</html>
