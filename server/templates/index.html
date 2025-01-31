@@ -7,12 +7,15 @@
 </head>
 <body>
     <h1>Welcome to Wordly!</h1>
-    <h2>Guess the word and level up to the next!</h2>
+    <h2>Guess the word!</h2>
     <form id="myForm">
         <input type="text" name="user_input" id="user_input" placeholder="Enter something">
         <button type="submit">Submit</button>
     </form>
-    <p id="response"></p>
+    <p>these are the right letters from your guessed word:</p>
+    <p id="response-right"></p>
+    <p>these are the wrong letters from your guessed word:</p>
+    <p id="response-wrong"></p>
     <script>
         document.querySelector('#myForm').addEventListener('submit', function(event) {
             event.preventDefault()
@@ -25,7 +28,8 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.querySelector('#response'). innerText = 'Response: ' + data.message
+                document.querySelector('#response-right').innerText = data.right
+                document.querySelector('#response-wrong').innerText = data.wrong
             })
             .catch(error => console.log('Error: ', error))
         })
