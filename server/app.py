@@ -2,46 +2,50 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
+the_word = "hund"
 right_letters = ""
 wrong_letters = ""
 
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    # gör en funktion som bestämmer det magiska ordet när sidan laddas
+    word_len = word_length()
+    # gör en funktion som bestämmer antal försök, kanske beroende på hur långt ordet är
+    return render_template("index.html", length=word_len)
 
 
 @app.route("/process", methods=["POST"])
 def process():
     user_input = request.form.get("user_input")
-    # check if the word is correct if not run progam
+    # felhantering av user_input / bör göras på frontend också ?
     answer = check_word(user_input)
-    return {"right": f"{answer[0]}", "wrong": f"{answer[1]}"}
+    # en funktion som räknar ner hur många försök det är kvar
+    return jsonify({"right": answer[0], "wrong": answer[1], "correct": answer[2]})
 
 
-# Check is input word is the correct word
+def word_length():
+    global the_word
+    return len(the_word)
+
+
 def check_word(user_input):
-    the_word = "hund"
+    global the_word
+    global right_letters
+    global wrong_letters
+
+    if user_input == the_word:
+        return right_letters, wrong_letters, True
 
     for c in user_input:
         if c in the_word:
-            global right_letters
             if c not in right_letters:
                 right_letters += c
         else:
-            global wrong_letters
             if c not in wrong_letters:
                 wrong_letters += c
 
-    print(f"these are the right letters {right_letters}")
-    return right_letters, wrong_letters
-
-    # if user_input == the_word:
-    #    print("right word!!")
-    #    return "right word!!"
-    # else:
-    #    print("wrong word :( ")
-    #    return "wrong word!! :("
+    return right_letters, wrong_letters, False
 
 
 if __name__ == "__main__":

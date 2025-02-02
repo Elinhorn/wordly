@@ -7,15 +7,18 @@
 </head>
 <body>
     <h1>Welcome to Wordly!</h1>
-    <h2>Guess the word!</h2>
+    <h2>Guess the <span id="response-word-length">{{ length }}</span> letter word! </h2>
     <form id="myForm">
-        <input type="text" name="user_input" id="user_input" placeholder="Enter something">
+        <input type="text" name="user_input" maxlength={{length}} id="user_input" placeholder="Enter something">
         <button type="submit">Submit</button>
     </form>
     <p>these are the right letters from your guessed word:</p>
     <p id="response-right"></p>
     <p>these are the wrong letters from your guessed word:</p>
     <p id="response-wrong"></p>
+    <h2 id="response-correct" style="display: none;">You guessed right! The right words is: <span id="correct-word"></span> </h2>
+    
+
     <script>
         document.querySelector('#myForm').addEventListener('submit', function(event) {
             event.preventDefault()
@@ -30,6 +33,10 @@
             .then(data => {
                 document.querySelector('#response-right').innerText = data.right
                 document.querySelector('#response-wrong').innerText = data.wrong
+                if (data.correct) {
+                    document.querySelector('#response-correct').style.display = 'block'
+                    document.querySelector('#correct-word').innerText = formData.get('user_input')
+                }
             })
             .catch(error => console.log('Error: ', error))
         })
