@@ -1,15 +1,16 @@
 from flask import Flask, render_template, request, jsonify
+from words import get_random_word
 
 app = Flask(__name__)
 
-the_word = "hund"
+the_word = get_random_word()
 right_letters = ""
 wrong_letters = ""
 
 
 @app.route("/")
 def home():
-    # gör en funktion som bestämmer det magiska ordet när sidan laddas
+    # när rätt ord är gissat ska ett nytt ord randomisas
     word_len = word_length()
     # gör en funktion som bestämmer antal försök, kanske beroende på hur långt ordet är
     return render_template("index.html", length=word_len)
