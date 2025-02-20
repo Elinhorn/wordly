@@ -13,12 +13,13 @@
         <button type="submit">Submit</button>
     </form>
     <p>these are the right letters from your guessed word:</p>
-    <p id="response-right"></p>
+    <h3 style="color:rgb(25, 156, 115);" id="response-right"></h3>
     <p>these are the wrong letters from your guessed word:</p>
-    <p id="response-wrong"></p>
-    <h2 id="response-correct" style="display: none;">You guessed right! The right words is: <span id="correct-word"></span> </h2>
-    
-
+    <h3 style="color:rgb(255, 53, 30);" id="response-wrong"></h3>
+    <div id="response-correct" style="display: none;">
+        <h2>You guessed right! The right words is: <span id="correct-word"></span> </h2>
+        <button id="next-word">Give me next word</button>
+    </div>
     <script>
         document.querySelector('#myForm').addEventListener('submit', function(event) {
             event.preventDefault()
@@ -31,6 +32,7 @@
             })
             .then(response => response.json())
             .then(data => {
+                console.log(data.wrong)
                 document.querySelector('#response-right').innerText = data.right
                 document.querySelector('#response-wrong').innerText = data.wrong
                 if (data.correct) {

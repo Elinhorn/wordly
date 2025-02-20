@@ -46,5 +46,9 @@ def check_word(user_input):
     return list(right_letters), list(wrong_letters), False
 
 
+def next_word():
+    print("next_word")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

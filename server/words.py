@@ -3,14 +3,14 @@ import random
 WORD_LIST = (
     "dog",
     "elephant",
-    "mango",
-    "coconut",
-    "book",
-    "cat",
-    "sea",
-    "turtle",
-    "cowboy",
-    "music",
+    # "mango",
+    # "coconut",
+    # "book",
+    # "cat",
+    # "sea",
+    # "turtle",
+    # "cowboy",
+    # "music",
 )
 
 
