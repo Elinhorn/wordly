@@ -8,13 +8,6 @@ A simple word guessing game inspired by Hangman and NYT Wordle but a much easier
 2. You will get feedback if the word is correct or if not you had guessed right on some letters.
 3. If your out of attempts you can choose to play again or if you guessed right you can play the game again.
 
-## Tech
-
-- Python
-- Flask
-- HTML, CSS and Javascript
-- dotenv
-
 ## Setup
 
 1. Clone the repo
@@ -24,3 +17,10 @@ A simple word guessing game inspired by Hangman and NYT Wordle but a much easier
 5. Run: python app.py
 6. Open yourbrowser and go to `http://127.0.0.1:5000`
 7. Lets guess the word!
+
+## Tech
+
+- Python
+- Flask
+- HTML, CSS and Javascript
+- dotenv
