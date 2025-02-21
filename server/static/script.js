@@ -12,8 +12,8 @@ document.querySelector("#myForm").addEventListener("submit", function (event) {
     .then((data) => {
       if (data.game_over) {
         document.querySelector("#game-over").style.display = "block";
-        document.querySelector("#myForm").style.display = "none"; // Hide the form
-        document.querySelector("#response-correct").style.display = "none"; // Hide the correct answer message if it was shown
+        document.querySelector("#myForm").style.display = "none";
+        document.querySelector("#response-correct").style.display = "none";
         document.querySelector("#attempts-left").innerText = data.attempts;
       } else {
         document.querySelector("#attempts-left").innerText = data.attempts;
@@ -23,7 +23,7 @@ document.querySelector("#myForm").addEventListener("submit", function (event) {
           document.querySelector("#response-correct").style.display = "block";
           document.querySelector("#correct-word").innerText =
             formData.get("user_input");
-          document.querySelector("#myForm").style.display = "none"; // Hide the form
+          document.querySelector("#myForm").style.display = "none";
         }
       }
       userInput.value = "";
